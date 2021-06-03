@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-custom {
+  display: flex;
+  width: 100%;
+}
+
+.content {
+  flex-basis: 70%;
+  background-color: #fff;
+  padding: 2rem;
+  padding-bottom: 400px;
+}
+.sidebar {
+  position: relative;
+}
+.sidebar .summary-box {
+  border: 1px solid black;
+  overflow-y: scroll;
+  max-height: 50vh;
+  position: fixed;
+  padding-top: 5rem;
+  margin-bottom: 10px;
+}
+.section-summary-content-box-top {
+  height: 6vh;
+  background-color: #fff;
+}
+.section-summary-box {
+  position: fixed;
+  top: 50vh;
+  width: 30vw;
+  border: 1px solid black;
+  min-height: 46vh;
+  margin-top: 20px;
+}
+label {
+  margin: 4px;
+  width: 60px;
+}
+.section-summary-box__inputs {
+  padding-top: 1.7rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  font-display: column;
+}
+.section-summary-box__inputs.close {
+  display: none;
+}
+
+.icon-box {
+  justify-content: center;
+  position: fixed;
+  display: flex;
+  width: 30vw;
+}
+.close.icon-box {
+  justify-content: flex-end;
+  padding-right: 2rem;
+  position: fixed;
+  display: flex;
+  width: 30vw;
+}
+.close.icon-box i {
+  transform: rotate(-45deg);
+}
+.icon-box i {
+  margin-top: -10px;
+
+  background-color: aquamarine;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+}
+.sidebar .summary-heading {
+  background-color: #fafafa;
+  top: 0;
+  width: 100%;
+  position: fixed;
+}
+.sidebar .summary-heading h3 {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: aquamarine;
+  padding: 10px;
+}
+.summary-box-footer {
+  bottom: 0;
+  position: absolute;
+  right: 0;
+}
+.section-summary-box {
+  padding-top: 20px;
+  position: fixed;
+  max-height: 50vh;
+  overflow-y: scroll;
+}
+
+.sidebar .info {
+  /* width: 100%; */
+  padding: 10px;
+}
+p {
+  margin-bottom: 2rem !important;
+}
+
+.arrow {
+  position: fixed;
+  top: 2rem;
+  font-size: 30px;
+}
+
+.pointer-icon {
+  font-size: 30px;
+  width: 30px;
+}
+
+.bottom-height {
+  height: 600px;
+}
+
+.inputs {
+  display: flex;
+}
+.section-summary-content-box.close p {
+  display: none;
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container-custom">
+      <div class="content">
+        <div class="header"></div>
+      </div>
+      <span class="arrow"
+        ><i class="fa fa-chevron-right" aria-hidden="true"></i
+      ></span>
+      <div class="sidebar">
+        <!-- <div class="summary-container"></div> -->
+        <div class="summary-box">
+          <div class="summary-heading">
+            <h3></h3>
+            <div class="inputs">
+              <div>
+                <label for="type">Type:</label>
+                <select id="type" name="type">
+                  <option value="model1">SciBert</option>
+                  <option value="model2">Bert v1</option>
+                  <!-- <option value="model3">long</option> -->
+                </select>
+              </div>
+              <div>
+                <label for="volume">length</label>
+                <input
+                  type="range"
+                  id="length"
+                  name="volume"
+                  step="50"
+                  min="50"
+                  max="150"
+                />
+              </div>
+            </div>
+          </div>
+          <p id="root" class="info"></p>
+          <div class="summary-box-footer"></div>
+        </div>
+        <div class="section-summary-box">
+          <div class="icon-box-container">
+            <div class="icon-box">
+              <i class="fas fa-plus"></i>
+            </div>
+            <div class="section-summary-box__inputs close">
+              <div>
+                <label for="section-1">From:</label>
+                <select id="section-1" name="type">
+                  <!-- <option value="model3">long</option> -->
+                </select>
+              </div>
+              <div>
+                <label for="section-2">To:</label>
+                <select id="section-2" name="type">
+                  <!-- <option value="model3">long</option> -->
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="section-summary-content-box close">
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>    
+    <script src="https://redom.js.org/redom.min.js"></script>
+  </script>  
+  <style>
+    .btn1{
+      border-radius: 0!important;
+      padding: 0;
+      padding-right: 3px;
+      padding-left: 0;
+      background: white;
+      color: black;
+      border: none;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .customMeaning {
+      cursor: pointer;
+      padding-left: 2px
+    }
+  </style>  
+  <script src="https://redom.js.org/redom.min.js"></script>
+  <script>
+      const { el, mount, setChildren, text } = redom;
+      $(function () {
+        $('[data-toggle="popover"]').popover()
+      })
+      const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+      window.allWords = []
+      window.allMeanings = []
+      const elements = () => {
+          setChildren(document.getElementById("root"), null)
+          allWords.map((word, index) => {
+            if (alphabet.includes(word[0].toLowerCase())){
+              document.getElementById("root").appendChild(el("div", {
+                  "data-placement": "bottom", 
+                  "role": "button", 
+                  "data-html": "true",
+                  "data-toggle": "popover",
+                  class: "btn btn-lg btn-primary btn1",
+                  innerText: word,
+                  "data-content": `<div style="display: flex; flex-flow: row;">${allMeanings[index].map((meaning, indexOfMeaning) => {
+                       return`<div class="customMeaning" onclick="document.getElementById('root').innerHTML = ''; reset(${index}, ${indexOfMeaning})">${meaning} </div>`})}</div>`
+                }))
+              }
+            else {
+              document.getElementById("root").appendChild(el("button", {class: "btn btn-lg btn-primary btn1", innerText: word}))
+            }
+          })
+          $(function () {
+            $('[data-toggle="popover"]').popover()
+          })
+        }
+      const reset = (index, indexOfMeaning) => {
+        const temp = allMeanings[index][indexOfMeaning]; 
+        allMeanings[index][indexOfMeaning] = allWords[index]; 
+        allWords[index] = temp; 
+        console.log(allWords, allMeanings)
+        $("div.popover").remove();
+        elements()
+      }
+  </script>
+    <script src="./app.js"></script>
+  </body>
+</html>
